@@ -1,0 +1,1387 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, ini al-scale=1.0"> 
+    < tle>Login Page</ tle> 
+    <link rel="stylesheet" href="style.css"> 
+</head> 
+<body> 
+    <div class="login-container"> 
+        <h2>Login</h2> 
+        <form ac on="#" method="post"> 
+            <div class="input-group"> 
+                <label for="username">Username</label> 
+                <input type="text" id="username" name="username" required> 
+            </div> 
+            <div class="input-group"> 
+                <label for="password">Password</label> 
+                <input type="password" id="password" name="password" required> 
+            </div> 
+            <bu on type="submit" class="login-bu on">Login</bu on> 
+            <p class="register-link">Don’t have an account? <a href="register.html">Register 
+here</a></p> 
+        </form> 
+    </div> 
+    <script src="login.js"></script> 
+</body> 
+</html> 
+ 
+ 
+LOGIN CODE CSS 
+/* Reset some default styles */ 
+* { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+} 
+body { 
+    display: flex; 
+    align-items: center; 
+    jus fy-content: center; 
+    height: 100vh; 
+    font-family: Arial, sans-serif; 
+    background: linear-gradient(135deg, #0f0f0f, #1c1c1c); 
+    color: #e0e0e0; 
+} 
+/* Container styles */ 
+.login-container { 
+    background-color: #1a1a1a; 
+    padding: 30px; 
+    width: 100%; 
+    max-width: 400px; 
+    border-radius: 12px; 
+    box-shadow: 0 8px 16px rgba(0, 17, 255, 0.3); 
+    anima on: fadeIn 0.8s ease; 
+    border: 1px solid rgba(0, 13, 255, 0.3); 
+} 
+.login-container h2 { 
+    text-align: center; 
+    color: #1e00ff; 
+    margin-bo om: 20px; 
+    font-size: 24px; 
+    font-weight: 700; 
+    text-shadow: 0px 0px 8px rgb(0, 30, 255); 
+} 
+/* Input group styles */ 
+.input-group { 
+    margin-bo om: 18px; 
+} 
+.input-group label { 
+    display: block; 
+    font-size: 14px; 
+    color: #888; 
+    margin-bo om: 6px; 
+} 
+.input-group input[type="text"], 
+.input-group input[type="password"] { 
+    width: 100%; 
+    padding: 12px; 
+    font-size: 16px; 
+    background-color: #333; 
+    color: #e0e0e0; 
+    border: 1px solid #444; 
+    border-radius: 8px; 
+    outline: none; 
+    transi on: border-color 0.3s ease, box-shadow 0.3s ease; 
+} 
+.input-group input[type="text"]:focus, 
+.input-group input[type="password"]:focus { 
+    border-color: #1e00ff; 
+    box-shadow: 0 0 8px rgb(0, 8, 255); 
+} 
+/* Bu on styles */ 
+.login-bu on { 
+    width: 100%; 
+    padding: 12px; 
+    background-color: #1e00ff; 
+    color: #1a1a1a; 
+    border: none; 
+    border-radius: 8px; 
+    font-size: 16px; 
+    font-weight: bold; 
+    cursor: pointer; 
+    transi on: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease; 
+} 
+.login-bu on:hover { 
+    background-color: #1e00ff; 
+    box-shadow: 0 0 10px rgb(0, 0, 255); 
+} 
+.login-bu on:ac ve { 
+    transform: scale(0.98); 
+} 
+/* Register link */ 
+.register-link { 
+    text-align: center; 
+    margin-top: 16px; 
+    font-size: 14px; 
+    color: #888; 
+} 
+.register-link a { 
+    color: #1e00ff; 
+    text-decora on: none; 
+    font-weight: bold; 
+   transi on: color 0.3s ease, text-shadow 0.3s ease; 
+} 
+.register-link a:hover { 
+    color: #1e00ff; 
+    text-shadow: 0px 0px 6px rgb(0, 8, 255); 
+} 
+/* Fade-in anima on */ 
+@keyframes fadeIn { 
+    from { 
+        opacity: 0; 
+        transform: translateY(-10px); 
+    } 
+    to { 
+        opacity: 1; 
+        transform: translateY(0); 
+    } 
+} 
+/* Responsive adjustments */ 
+@media (max-width: 480px) { 
+    .login-container { 
+        padding: 20px; 
+        margin: 0 10px; 
+    } 
+    .login-container h2 { 
+        font-size: 20px; 
+    } 
+    .login-bu on { 
+        font-size: 14px; 
+    } 
+    .register-link { 
+        font-size: 12px;   }} 
+LOGIN CODE JS 
+document.addEventListener('DOMContentLoaded', () => { 
+    const form = document.querySelector('form'); 
+    const usernameInput = document.getElementById('username'); 
+    const passwordInput = document.getElementById('password'); 
+ 
+    form.addEventListener('submit', (event) => { 
+        event.preventDefault();  // Prevent form from submi ng 
+ 
+        const username = usernameInput.value.trim(); 
+        const password = passwordInput.value.trim(); 
+ 
+        // Simple valida on for demonstra on 
+        if (validateLogin(username, password)) { 
+            alert("Login successful!"); 
+            // Redirect to a new page (example) 
+            window.loca on.href = "dashboard.html"; 
+        } else { 
+            alert("Invalid username or password."); 
+        } 
+    }); 
+ 
+    func on validateLogin(username, password) { 
+        // Replace these creden als with actual valida on logic as needed 
+        const validUsername = "admin"; 
+        const validPassword = "password123"; 
+ 
+        return username === validUsername && password === validPassword; 
+    } 
+}); 
+ 
+REGISTER CODE HTML 
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, ini al-scale=1.0"> 
+    < tle>Register Page</ tle> 
+    <link rel="stylesheet" href="styles.css"> 
+</head> 
+<body> 
+    <div class="register-container"> 
+        <h2>Create Account</h2> 
+        <form ac on="#" method="post"> 
+            <div class="input-group"> 
+                <label for="fullname">Full Name</label> 
+                <input type="text" id="fullname" name="fullname" required> 
+            </div> 
+            <div class="input-group"> 
+                <label for="email">Email</label> 
+                <input type="email" id="email" name="email" required> 
+            </div> 
+            <div class="input-group"> 
+                <label for="username">Username</label> 
+                <input type="text" id="username" name="username" required> 
+            </div> 
+            <div class="input-group"> 
+                <label for="password">Password</label> 
+                <input type="password" id="password" name="password" required> 
+            </div> 
+            <div class="input-group"> 
+                <label for="confirm-password">Confirm Password</label> 
+                <input type="password" id="confirm-password" name="confirm-password" required> 
+            </div> 
+            <bu on type="submit" class="register-bu on">Sign Up</bu on> 
+            <p class="login-link">Already have an account? <a href="login.html">Log in</a></p> 
+        </form> 
+    </div> 
+    <script src="reg.js"></script> 
+</body> 
+</html> 
+ 
+REGIDTER CODE CSS 
+/* Reset default styles */ 
+* { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+} 
+body { 
+    display: flex; 
+    align-items: center; 
+    jus fy-content: center; 
+    height: 100vh; 
+    font-family: Arial, sans-serif; 
+    background: linear-gradient(135deg, #0f0f0f, #1c1c1c); 
+    color: #e0e0e0; 
+} 
+/* Container styles */ 
+.register-container { 
+    background-color: #1a1a1a; 
+    padding: 30px; 
+    width: 100%; 
+    max-width: 400px; 
+    border-radius: 12px; 
+    box-shadow: 0 8px 16px rgb(0, 13, 255); 
+    anima on: fadeIn 0.8s ease; 
+    border: 1px solid rgb(0, 13, 255); 
+} 
+.register-container h2 { 
+    text-align: center; 
+    color: #1e00ff; 
+    margin-bo om: 20px; 
+    font-size: 24px; 
+    font-weight: 700; 
+    text-shadow: 0px 0px 8px rgb(0, 13, 255); 
+} 
+/* Input group styles */ 
+.input-group { 
+    margin-bo om: 18px; 
+} 
+.input-group label { 
+    display: block; 
+    font-size: 14px; 
+    color: #888; 
+    margin-bo om: 6px; 
+} 
+.input-group input[type="text"], 
+.input-group input[type="email"], 
+.input-group input[type="password"] { 
+    width: 100%; 
+    padding: 12px; 
+    font-size: 16px; 
+    background-color: #333; 
+    color: #e0e0e0; 
+    border: 1px solid #444; 
+    border-radius: 8px; 
+    outline: none; 
+    transi on: border-color 0.3s ease, box-shadow 0.3s ease; 
+} 
+.input-group input:focus { 
+    border-color: #1e00ff; 
+    box-shadow: 0 0 8px rgb(47, 0, 255); 
+} 
+/* Bu on styles */ 
+.register-bu on { 
+    width: 100%; 
+    padding: 12px; 
+    background-color: #1e00ff; 
+    color: #1a1a1a; 
+    border: none; 
+    border-radius: 8px; 
+    font-size: 16px; 
+    font-weight: bold; 
+    cursor: pointer; 
+    transi on: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease; 
+} 
+.register-bu on:hover { 
+    background-color: #1e00ff; 
+    box-shadow: 0 0 10px rgb(0, 0, 255); 
+} 
+.register-bu on:ac ve { 
+    transform: scale(0.98); 
+} 
+/* Login link */ 
+.login-link { 
+    text-align: center; 
+    margin-top: 16px; 
+    font-size: 14px; 
+    color: #888; 
+} 
+.login-link a { 
+    color: #1e00ff; 
+    text-decora on: none; 
+    font-weight: bold; 
+    transi on: color 0.3s ease, text-shadow 0.3s ease; 
+} 
+.login-link a:hover { 
+    color: #1e00ff; 
+    text-shadow: 0px 0px 6px rgb(0, 17, 255); 
+} 
+/* Fade-in anima on */ 
+@keyframes fadeIn { 
+    from { 
+        opacity: 0; 
+        transform: translateY(-10px); 
+    }    to { 
+        opacity: 1; 
+        transform: translateY(0); 
+    } 
+} 
+/* Responsive adjustments */ 
+@media (max-width: 480px) { 
+    .register-container { 
+        padding: 20px; 
+        margin: 0 10px;    } 
+ 
+  register-container h2 { 
+        font-size: 20px; 
+    } 
+    .register-bu on { 
+        font-size: 14px; 
+    } 
+    .login-link { 
+        font-size: 12px; 
+    } 
+} 
+ 
+REGISTER CODE JS 
+document.addEventListener('DOMContentLoaded', () => { 
+    const form = document.querySelector('form'); 
+    const fullnameInput = document.getElementById('fullname'); 
+    const emailInput = document.getElementById('email'); 
+    const usernameInput = document.getElementById('username'); 
+    const passwordInput = document.getElementById('password'); 
+    const confirmPasswordInput = document.getElementById('confirm-password'); 
+ 
+    form.addEventListener('submit', (event) => { 
+        event.preventDefault();  // Prevent form from submi ng 
+ 
+        // Trim input values 
+        const fullname = fullnameInput.value.trim(); 
+        const email = emailInput.value.trim(); 
+        const username = usernameInput.value.trim(); 
+        const password = passwordInput.value.trim(); 
+        const confirmPassword = confirmPasswordInput.value.trim(); 
+ 
+        // Validate form fields 
+        if (!validateEmail(email)) { 
+            alert("Please enter a valid email address."); 
+        } else if (password !== confirmPassword) { 
+            alert("Passwords do not match."); 
+        } else if (password.length < 6) { 
+            alert("Password should be at least 6 characters long."); 
+        } else { 
+            // If all valida ons pass, proceed with registra on 
+            alert("Registra on successful!"); 
+            // Redirect or send data to server (example) 
+            // window.loca on.href = "welcome.html"; 
+        } 
+    }); 
+ 
+    // Func on to validate email format 
+    func on validateEmail(email) { 
+        const emailPa ern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/; 
+        return emailPa ern.test(email); 
+    } 
+}); 
+ 
+Main code html 
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, ini al-scale=1.0"> 
+    < tle>Electronic Waste Store</ tle> 
+    <link rel="stylesheet" href="styless.css"> 
+  
+</head> 
+<body> 
+    <header> 
+        <h1>Electronic Waste Store</h1> 
+    </header> 
+    <ul> 
+        <li><a href="home.html">home</a></li> 
+        <li><a href="about.html">about</a></li> 
+        <li><a href="service.html">services</a></li> 
+        <li><a href="contact.html">contact</a></li> 
+        <li><a href="register.html">register</a></li> 
+        <li><a href="login.html">Login</a></li> 
+    </ul> 
+ 
+    <main> 
+        <sec on class="products"> 
+            <h2>Available E-Waste Products</h2> 
+            <div class="product-list"> 
+                <div class="product"> 
+                    <img 
+src="h ps://tse4.mm.bing.net/th?id=OIP.xEChbBVnq pcma6DaYM7QHaFj&pid=Api&P=0&h=180" 
+alt="Old Phone" > 
+                    <h3>Old Phone</h3> 
+                    <p>Price: $10</p> 
+                    <bu on onclick="addToCart('Old Phone', 10)">Add to Cart</bu on> 
+                </div> 
+                <div class="product"> 
+                    <img 
+src="h ps://tse1.mm.bing.net/th?id=OIP.KSJhqVR3OXkvnZgnfs4pyAHaE8&pid=Api&P=0&h=180" 
+alt="Circuit Board" > 
+                    <h3>Circuit Board</h3> 
+                    <p>Price: $5</p> 
+                    <bu on onclick="addToCart('Circuit Board', 5)">Add to Cart</bu on> 
+                </div> 
+                <div class="product"> 
+                    <img src="h ps://tse2.mm.bing.net/th?id=OIP.oWD9ZpF
+TsdHTVGDJgEzqQHaFj&pid=Api&P=0&h=180" alt="Old Laptop" > 
+                    <h3>Old Laptop</h3> 
+                    <p>Price: $50</p> 
+                    <bu on onclick="addToCart('Old Laptop', 50)">Add to Cart</bu on> 
+                </div> 
+            </div> 
+        </sec on> 
+ 
+        <sec on class="cart"> 
+            <h2>Shopping Cart</h2> 
+            <ul id="cart-items"></ul> 
+            <p id="total">Total: $0</p> 
+            <bu on onclick="checkout()">Checkout</bu on> 
+        </sec on> 
+    </main> 
+ 
+    <script src="script.js"></script> 
+</body> 
+</html> 
+ 
+MAIN CODE CSS 
+/* CSS Variables for Customiza on */ 
+:root { 
+    --primary-color: #1db954; 
+    --accent-color: #2a9d8f; 
+    --secondary-color: #333; 
+    --background-color: #0f0f0f; 
+    --text-color: #e0e0e0; 
+    --card-bg: rgba(255, 255, 255, 0.1); 
+    --border-radius: 15px; 
+    --blur-level: 20px; 
+    --glass-bg: rgba(255, 255, 255, 0.1); 
+    --highlight: #1ed760; 
+} 
+ 
+* { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+    font-family: 'Poppins', sans-serif; 
+    scroll-behavior: smooth; 
+} 
+ 
+/* Background with Animated Gradient */ 
+body { 
+    background: linear-gradient(135deg, #121212, #1a1a1a, #0f0f0f); 
+    color: var(--text-color); 
+    display: flex; 
+    flex-direc on: column; 
+    align-items: center; 
+    min-height: 100vh; 
+    overflow-x: hidden; 
+    anima on: gradientAnima on 10s ease-in-out infinite; 
+} 
+ 
+@keyframes gradientAnima on { 
+    0%, 100% { background-posi on: 0% 50%; } 
+    50% { background-posi on: 100% 50%; } 
+} 
+ 
+/* Header */ 
+header { 
+    background: var(--secondary-color); 
+    color: var(--text-color); 
+    width: 100%; 
+    padding: 20px; 
+    text-align: center; 
+    border-bo om-le-radius: var(--border-radius); 
+    border-bo om-right-radius: var(--border-radius); 
+    posi on: s cky; 
+    top: 0; 
+    z-index: 10; 
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); 
+    transi on: background 0.3s ease; 
+} 
+ 
+header h1 { 
+    font-size: 2.8em; 
+    color: var(--primary-color); 
+    background: linear-gradient(45deg, #1ed760, #1db954); 
+    -webkit-background-clip: text; 
+    -webkit-text-fill-color: transparent; 
+    font-weight: 800; 
+} 
+ 
+/* Naviga on Menu */ 
+ul { 
+    display: flex; 
+    jus fy-content: center; 
+    list-style: none; 
+    background: var(--secondary-color); 
+    width: 100%; 
+    padding: 10px 0; 
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); 
+} 
+ 
+ul li { 
+    margin: 0 15px; 
+} 
+ 
+ul a { 
+    text-decora on: none; 
+    color: var(--text-color); 
+    font-size: 1.2em; 
+    padding: 8px 15px; 
+    border-radius: var(--border-radius); 
+    transi on: background 0.3s, transform 0.3s ease-in-out; 
+} 
+ 
+ul a:hover { 
+    background: var(--highlight); 
+    color: #fff; 
+    transform: translateY(-3px) scale(1.1); 
+} 
+ 
+/* Main Layout */ 
+main { 
+    display: flex; 
+    flex-wrap: wrap; 
+    jus fy-content: space-around; 
+    padding: 40px 20px; 
+    gap: 30px; 
+    max-width: 1200px; 
+    width: 100%; 
+} 
+ 
+/* Product and Cart Sec ons */ 
+.products, .cart { 
+    flex: 1; 
+    min-width: 300px; 
+    background: var(--glass-bg); 
+    backdrop-filter: blur(var(--blur-level)); 
+    padding: 25px; 
+    border-radius: var(--border-radius); 
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); 
+    transi on: transform 0.3s ease, box-shadow 0.3s ease; 
+    transform-style: preserve-3d; 
+} 
+ 
+.products:hover, .cart:hover { 
+    transform: rotateX(5deg) rotateY(-5deg); 
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.5); 
+} 
+ 
+.products h2, .cart h2 { 
+    font-size: 1.8em; 
+    color: var(--highlight); 
+    text-align: center; 
+    margin-bo om: 20px; 
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); 
+} 
+ 
+/* Product List */ 
+.product-list { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); 
+    gap: 25px; 
+} 
+ 
+.product { 
+    background: var(--glass-bg); 
+    border-radius: var(--border-radius); 
+    padding: 20px; 
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3); 
+    display: flex; 
+    flex-direc on: column; 
+    align-items: center; 
+    text-align: center; 
+    transi on: transform 0.3s ease, box-shadow 0.3s ease; 
+} 
+ 
+.product:hover { 
+    transform: translateY(-5px) scale(1.02); 
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.5); 
+} 
+ 
+.product img { 
+    width: 100%; 
+    max-width: 150px; 
+    border-radius: var(--border-radius); 
+    margin-bo om: 15px; 
+    transi on: transform 0.3s; 
+} 
+ 
+.product img:hover { 
+    transform: scale(1.2) rotate(5deg); 
+} 
+ 
+.product h3 { 
+    font-size: 1.3em; 
+    color: var(--text-color); 
+    margin-bo om: 8px; 
+} 
+ 
+.product p { 
+    font-size: 1.1em; 
+    color: #cccccc; 
+} 
+ 
+/* Bu on Styling */ 
+bu on { 
+    background: var(--primary-color); 
+    color: #fff; 
+    padding: 10px 20px; 
+    border: none; 
+    border-radius: var(--border-radius); 
+    font-size: 1em; 
+    cursor: pointer; 
+    transi on: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease; 
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); 
+    anima on: pulse 1.5s infinite alternate; 
+} 
+ 
+bu on:hover { 
+    background: #1ed760; 
+    transform: translateY(-3px); 
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5); 
+} 
+ 
+bu on:ac ve { 
+    transform: translateY(2px); 
+    box-shadow: 0 3px 7px rgba(0, 0, 0, 0.2); 
+} 
+ 
+@keyframes pulse { 
+    from { transform: scale(1); } 
+    to { transform: scale(1.05); } 
+} 
+ 
+/* Shopping Cart */ 
+.cart ul { 
+    list-style-type: none; 
+    width: 100%; 
+    padding: 0; 
+    margin-bo om: 20px; 
+} 
+ 
+.cart li { 
+    display: flex; 
+    jus fy-content: space-between; 
+    padding: 10px; 
+    font-size: 1em; 
+    color: var(--text-color); 
+    border-bo om: 1px solid rgba(255, 255, 255, 0.2); 
+} 
+ 
+.cart li:hover { 
+    background-color: rgba(255, 255, 255, 0.1); 
+} 
+ 
+#total { 
+    font-size: 1.3em; 
+    font-weight: bold; 
+    color: var(--highlight); 
+    margin-top: 15px; 
+    text-align: center; 
+} 
+ 
+/* Responsive Design */ 
+@media (max-width: 768px) { 
+    main { 
+        flex-direc on: column; 
+        align-items: center; 
+    } 
+    header h1 { 
+        font-size: 2em; 
+    } 
+    ul a { 
+        font-size: 1em; 
+    } 
+} 
+MAIN CODE JSS 
+let cart = []; 
+let totalAmount = 0; 
+ 
+func on addToCart(productName, price) { 
+    cart.push({ name: productName, price: price }); 
+    totalAmount += price; 
+    updateCart(); 
+} 
+ 
+func on updateCart() { 
+    const cartItems = document.getElementById("cart-items"); 
+    cartItems.innerHTML = ""; 
+ 
+    cart.forEach(item => { 
+        const li = document.createElement("li"); 
+        li.textContent = `${item.name} - $${item.price}`; 
+        cartItems.appendChild(li); 
+    }); 
+ 
+    document.getElementById("total").textContent = `Total: $${totalAmount}`; 
+} 
+ 
+func on checkout() { 
+    alert(`Thank you for your purchase! Your total is $${totalAmount}.`); 
+    cart = []; 
+    totalAmount = 0; 
+    updateCart(); 
+} 
+ 
+HOME HTML 
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, ini al-scale=1.0"> 
+    < tle>Electronic Waste Store</ tle> 
+    <link rel="stylesheet" href="style1.css"> 
+  
+</head> 
+<body> 
+    <header> 
+        <h1>Electronic Waste Store</h1> 
+    </header> 
+    <ul> 
+        <li><a href="home.html">home</a></li> 
+        <li><a href="about.html">about</a></li> 
+        <li><a href="service.html">services</a></li> 
+        <li><a href="contact.html">contact</a></li> 
+    </ul> 
+ 
+    <main> 
+        <sec on class="products"> 
+            <h2>Available E-Waste Products</h2> 
+            <div class="product-list"> 
+                <div class="product"> 
+                    <img 
+src="h ps://tse4.mm.bing.net/th?id=OIP.xEChbBVnq pcma6DaYM7QHaFj&pid=Api&P=0&h=180" 
+alt="Old Phone" > 
+                    <h3>Old Phone</h3> 
+                    <p>Price: $10</p> 
+                    <bu on onclick="addToCart('Old Phone', 10)">Add to Cart</bu on> 
+                </div> 
+                <div class="product"> 
+                    <img 
+src="h ps://tse1.mm.bing.net/th?id=OIP.KSJhqVR3OXkvnZgnfs4pyAHaE8&pid=Api&P=0&h=180" 
+alt="Circuit Board" > 
+                    <h3>Circuit Board</h3> 
+                    <p>Price: $5</p> 
+                    <bu on onclick="addToCart('Circuit Board', 5)">Add to Cart</bu on> 
+                </div> 
+                <div class="product"> 
+                    <img src="h ps://tse2.mm.bing.net/th?id=OIP.oWD9ZpF
+TsdHTVGDJgEzqQHaFj&pid=Api&P=0&h=180" alt="Old Laptop" > 
+                    <h3>Old Laptop</h3> 
+                    <p>Price: $50</p> 
+                    <bu on onclick="addToCart('Old Laptop', 50)">Add to Cart</bu on> 
+                </div> 
+            </div> 
+        </sec on> 
+ 
+        <sec on class="cart"> 
+            <h2>Shopping Cart</h2> 
+            <ul id="cart-items"></ul> 
+            <p id="total">Total: $0</p> 
+            <bu on onclick="checkout()">Checkout</bu on> 
+        </sec on> 
+    </main> 
+ 
+    <script src="script.js"></script> 
+</body> 
+</html> 
+ 
+HOME CSS 
+/* CSS Variables for Customiza on */ 
+:root { 
+    --primary-color: #1db954; 
+    --accent-color: #2a9d8f; 
+    --secondary-color: #333; 
+    --background-color: #0f0f0f; 
+    --text-color: #e0e0e0; 
+    --card-bg: rgba(255, 255, 255, 0.1); 
+    --border-radius: 15px; 
+    --blur-level: 20px; 
+    --glass-bg: rgba(255, 255, 255, 0.1); 
+    --highlight: #1ed760; 
+} 
+ 
+* { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+    font-family: 'Poppins', sans-serif; 
+    scroll-behavior: smooth; 
+} 
+ 
+/* Background with Animated Gradient */ 
+body { 
+    background: linear-gradient(135deg, #121212, #1a1a1a, #0f0f0f); 
+    color: var(--text-color); 
+    display: flex; 
+    flex-direc on: column; 
+    align-items: center; 
+    min-height: 100vh; 
+    overflow-x: hidden; 
+    anima on: gradientAnima on 10s ease-in-out infinite; 
+} 
+ 
+@keyframes gradientAnima on { 
+    0%, 100% { background-posi on: 0% 50%; } 
+    50% { background-posi on: 100% 50%; } 
+} 
+ 
+/* Header */ 
+header { 
+    background: var(--secondary-color); 
+    color: var(--text-color); 
+    width: 100%; 
+    padding: 20px; 
+    text-align: center; 
+    border-bo om-le-radius: var(--border-radius); 
+    border-bo om-right-radius: var(--border-radius); 
+    posi on: s cky; 
+    top: 0; 
+    z-index: 10; 
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); 
+    transi on: background 0.3s ease; 
+} 
+ 
+header h1 { 
+    font-size: 2.8em; 
+    color: var(--primary-color); 
+    background: linear-gradient(45deg, #1ed760, #1db954); 
+    -webkit-background-clip: text; 
+    -webkit-text-fill-color: transparent; 
+    font-weight: 800; 
+} 
+ 
+/* Naviga on Menu */ 
+ul { 
+    display: flex; 
+    jus fy-content: center; 
+    list-style: none; 
+    background: var(--secondary-color); 
+    width: 100%; 
+    padding: 10px 0; 
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); 
+} 
+ 
+ul li { 
+    margin: 0 15px; 
+} 
+ 
+ul a { 
+    text-decora on: none; 
+    color: var(--text-color); 
+    font-size: 1.2em; 
+    padding: 8px 15px; 
+    border-radius: var(--border-radius); 
+    transi on: background 0.3s, transform 0.3s ease-in-out; 
+} 
+ 
+ul a:hover { 
+    background: var(--highlight); 
+    color: #fff; 
+    transform: translateY(-3px) scale(1.1); 
+} 
+ 
+/* Main Layout */ 
+main { 
+    display: flex; 
+    flex-wrap: wrap; 
+    jus fy-content: space-around; 
+    padding: 40px 20px; 
+    gap: 30px; 
+    max-width: 1200px; 
+    width: 100%; 
+} 
+ 
+/* Product and Cart Sec ons */ 
+.products, .cart { 
+    flex: 1; 
+    min-width: 300px; 
+    background: var(--glass-bg); 
+    backdrop-filter: blur(var(--blur-level)); 
+    padding: 25px; 
+    border-radius: var(--border-radius); 
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); 
+    transi on: transform 0.3s ease, box-shadow 0.3s ease; 
+    transform-style: preserve-3d; 
+} 
+ 
+.products:hover, .cart:hover { 
+    transform: rotateX(5deg) rotateY(-5deg); 
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.5); 
+} 
+ 
+.products h2, .cart h2 { 
+    font-size: 1.8em; 
+    color: var(--highlight); 
+    text-align: center; 
+    margin-bo om: 20px; 
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); 
+} 
+ 
+/* Product List */ 
+.product-list { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); 
+    gap: 25px; 
+} 
+ 
+.product { 
+    background: var(--glass-bg); 
+    border-radius: var(--border-radius); 
+    padding: 20px; 
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3); 
+    display: flex; 
+    flex-direc on: column; 
+    align-items: center; 
+    text-align: center; 
+    transi on: transform 0.3s ease, box-shadow 0.3s ease; 
+} 
+ 
+.product:hover { 
+    transform: translateY(-5px) scale(1.02); 
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.5); 
+} 
+ 
+.product img { 
+    width: 100%; 
+    max-width: 150px; 
+    border-radius: var(--border-radius); 
+    margin-bo om: 15px; 
+    transi on: transform 0.3s; 
+} 
+ 
+.product img:hover { 
+    transform: scale(1.2) rotate(5deg); 
+} 
+ 
+.product h3 { 
+    font-size: 1.3em; 
+    color: var(--text-color); 
+    margin-bo om: 8px; 
+} 
+ 
+.product p { 
+    font-size: 1.1em; 
+    color: #cccccc; 
+} 
+ 
+/* Bu on Styling */ 
+bu on { 
+    background: var(--primary-color); 
+    color: #fff; 
+    padding: 10px 20px; 
+    border: none; 
+    border-radius: var(--border-radius); 
+    font-size: 1em; 
+    cursor: pointer; 
+    transi on: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease; 
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); 
+    anima on: pulse 1.5s infinite alternate; 
+} 
+ 
+bu on:hover { 
+    background: #1ed760; 
+    transform: translateY(-3px); 
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5); 
+} 
+ 
+bu on:ac ve { 
+    transform: translateY(2px); 
+    box-shadow: 0 3px 7px rgba(0, 0, 0, 0.2); 
+} 
+ 
+@keyframes pulse { 
+    from { transform: scale(1); } 
+    to { transform: scale(1.05); } 
+} 
+ 
+/* Shopping Cart */ 
+.cart ul { 
+    list-style-type: none; 
+    width: 100%; 
+    padding: 0; 
+    margin-bo om: 20px; 
+} 
+ 
+.cart li { 
+    display: flex; 
+    jus fy-content: space-between; 
+    padding: 10px; 
+    font-size: 1em; 
+    color: var(--text-color); 
+    border-bo om: 1px solid rgba(255, 255, 255, 0.2); 
+} 
+ 
+.cart li:hover { 
+    background-color: rgba(255, 255, 255, 0.1); 
+} 
+ 
+#total { 
+    font-size: 1.3em; 
+    font-weight: bold; 
+    color: var(--highlight); 
+    margin-top: 15px; 
+    text-align: center; 
+} 
+ 
+/* Responsive Design */ 
+@media (max-width: 768px) { 
+    main { 
+        flex-direc on: column; 
+        align-items: center; 
+    } 
+     
+    header h1 { 
+        font-size: 2em; 
+    } 
+     
+    ul a { 
+        font-size: 1em; 
+    } 
+} 
+ABOUT HTML 
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, ini al-scale=1.0"> 
+    < tle>About Electronic Waste</ tle> 
+    <link rel="stylesheet" href="about.css"> 
+</head> 
+<body> 
+    <div class="about-container"> 
+        <h2>About Electronic Waste</h2> 
+        <p>Electronic waste, or e-waste, refers to discarded electronic devices that have reached the 
+end of their useful life. The rapid advancement of technology has increased e-waste genera on, 
+crea ng environmental and health challenges worldwide.</p> 
+ 
+        <sec on class="problem"> 
+            <h3>The Problem of E-Waste</h3> 
+            <p>E-waste o en contains hazardous materials like lead, mercury, and cadmium, which can 
+pollute the environment if not disposed of properly. As electronics become obsolete faster, managing 
+e-waste responsibly has become cri cal.</p> 
+        </sec on> 
+ 
+        <sec on class="solu on"> 
+            <h3>Our Mission</h3> 
+            <p>Our mission is to spread awareness about the impacts of e-waste and to promote 
+sustainable prac ces like recycling and reusing electronic devices. Through educa on, we hope to 
+reduce the environmental footprint of discarded electronics.</p> 
+        </sec on> 
+ 
+        <sec on class="contact-info"> 
+            <h3>Learn More</h3> 
+            <p>For more informa on on how to reduce e-waste and join our efforts, feel free to <a 
+href="contact.html">contact us</a>.</p> 
+        </sec on> 
+    </div> 
+</body> 
+</html> 
+ 
+ 
+ABOUT CSS 
+.about-container { 
+    box-sizing: border-box; 
+    margin: 0; 
+    padding: 0; 
+    font-family: Arial, sans-serif; 
+} 
+ 
+body { 
+    display: flex; 
+    jus fy-content: center; 
+    align-items: center; 
+    height: 100vh; 
+    background-color: #000; 
+    color: #00FF7F; /* Light green text */ 
+} 
+ 
+.about-container { 
+    width: 100%; 
+    max-width: 600px; 
+    padding: 20px; 
+    background-color: #1a1a1a; /* Dark background for the content */ 
+    box-shadow: 0px 4px 12px rgba(0, 255, 127, 0.3); /* Light green shadow */ 
+    border-radius: 8px; 
+    text-align: center; 
+} 
+ 
+.about-container h2 { 
+    margin-bo om: 20px; 
+    color: #00FF7F; /* Light green heading */ 
+} 
+ 
+.about-container p { 
+    font-size: 1rem; 
+    color: #b3ffcc; /* So green text for paragraphs */ 
+    margin-bo om: 20px; 
+} 
+ 
+sec on h3 { 
+    color: #00FF7F; 
+    margin-bo om: 10px; 
+} 
+ 
+sec on p { 
+    color: #b3ffcc; 
+    margin-bo om: 20px; 
+} 
+ 
+a { 
+    color: #32CD32; /* Bright green for links */ 
+    text-decora on: none; 
+    transi on: color 0.3s ease; 
+} 
+ 
+a:hover { 
+    color: #00FF7F; /* Light green on hover */ 
+} 
+SERVICE HTML 
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, ini al-scale=1.0"> 
+    < tle>Our Services - E-Waste Management</ tle> 
+    <link rel="stylesheet" href="services.css"> 
+</head> 
+<body> 
+    <div class="services-container"> 
+        <h2>Our E-Waste Management Services</h2> 
+        <p>We provide comprehensive solu ons to manage and recycle electronic waste responsibly. 
+Our services help reduce the environmental impact of e-waste by ensuring safe disposal and 
+promo ng sustainable prac ces.</p> 
+ 
+        <sec on class="service-item"> 
+            <h3>1. E-Waste Collec on</h3> 
+            <p>We offer convenient e-waste collec on services to individuals, businesses, and 
+organiza ons. Our team ensures safe handling and transport of electronic items for recycling.</p> 
+        </sec on> 
+ 
+        <sec on class="service-item"> 
+            <h3>2. Recycling & Disposal</h3> 
+            <p>Our recycling and disposal service helps recover valuable materials from discarded 
+electronics while safely disposing of hazardous components.</p> 
+        </sec on> 
+ 
+        <sec on class="service-item"> 
+            <h3>3. Data Destruc on</h3> 
+            <p>We provide cer fied data destruc on services to ensure that sensi ve informa on is 
+securely erased before recycling electronic devices.</p> 
+        </sec on> 
+ 
+        <sec on class="service-item"> 
+            <h3>4. Environmental Awareness Programs</h3> 
+            <p>We conduct workshops and seminars to educate the public about e-waste hazards and 
+encourage sustainable prac ces to reduce electronic waste.</p> 
+        </sec on> 
+ 
+        <div class="contact-link"> 
+            <p>Interested in our services? <a href="contact.html">Contact us</a> to learn more or 
+schedule a service.</p> 
+        </div> 
+    </div> 
+</body> 
+</html> 
+SERVICE CSS 
+ 
+ 
+* { 
+    box-sizing: border-box; 
+    margin: 0; 
+    padding: 0; 
+    font-family: Arial, sans-serif; 
+} 
+ 
+body { 
+    display: flex; 
+    jus fy-content: center; 
+    align-items: center; 
+    height: 100vh; 
+    background-color: #000; 
+    color: #00FF7F; /* Light green text */ 
+} 
+ 
+.services-container { 
+    width: 100%; 
+    max-width: 700px; 
+    padding: 20px; 
+    background-color: #1a1a1a; /* Dark background */ 
+    box-shadow: 0px 4px 12px rgba(0, 255, 127, 0.3); /* Light green shadow */ 
+    border-radius: 8px; 
+    text-align: center; 
+} 
+ 
+.services-container h2 { 
+    margin-bo om: 20px; 
+    color: #00FF7F; /* Light green heading */ 
+} 
+ 
+.services-container p { 
+    font-size: 1rem; 
+    color: #b3ffcc; /* So green for main paragraphs */ 
+    margin-bo om: 20px; 
+} 
+ 
+.service-item { 
+    margin-bo om: 30px; 
+} 
+ 
+.service-item h3 { 
+    color: #00FF7F; 
+    font-size: 1.2rem; 
+    margin-bo om: 10px; 
+} 
+ 
+.service-item p { 
+    color: #b3ffcc; 
+    font-size: 1rem; 
+    line-height: 1.6; 
+} 
+ 
+.contact-link { 
+    margin-top: 20px; 
+} 
+ 
+.contact-link p { 
+    color: #32CD32; /* Bright green for call to ac on */ 
+} 
+ 
+.contact-link a { 
+    color: #00FF7F; 
+    text-decora on: none; 
+    transi on: color 0.3s ease; 
+} 
+ 
+.contact-link a:hover { 
+    color: #32CD32; /* Brighter green on hover */ 
+} 
+CONTACT HTML 
+ 
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, ini al-scale=1.0"> 
+    < tle>Document</ tle> 
+</head> 
+<body> 
+    <!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, ini al-scale=1.0"> 
+    < tle>Contact Us</ tle> 
+    <link rel="stylesheet" href="contact.css"> 
+</head> 
+<body> 
+    <div class="contact-container"> 
+        <h2>Contact Us</h2> 
+        <p>If you have any ques ons or feedback about the Smart Water Conserva on System, please 
+reach out to us using the form below.</p> 
+         
+        <form ac on="submit_form.php" method="post"> 
+            <label for="name">Name:</label> 
+            <input type="text" id="name" name="name" required> 
+             
+            <label for="email">Email:</label> 
+            <input type="email" id="email" name="email" required> 
+             
+            <label for="message">Message:</label> 
+            <textarea id="message" name="message" rows="5" required></textarea> 
+             
+            <bu on type="submit">Send Message</bu on> 
+        </form> 
+    </div> 
+</body> 
+</html> 
+ 
+CONTACT CSS 
+* { 
+    box-sizing: border-box; 
+    margin: 0; 
+    padding: 0; 
+    font-family: Arial, sans-serif; 
+} 
+ 
+body { 
+    display: flex; 
+    jus fy-content: center; 
+    align-items: center; 
+    height: 100vh; 
+    background-color: #000; 
+    color: #00FF7F; /* Light green text */ 
+} 
+ 
+.contact-container { 
+    width: 100%; 
+    max-width: 500px; 
+    padding: 20px; 
+    background-color: #1a1a1a; /* Dark background for the form */ 
+    box-shadow: 0px 4px 12px rgba(0, 255, 127, 0.3); /* Light green shadow */ 
+    border-radius: 8px; 
+    text-align: center; 
+} 
+ 
+.contact-container h2 { 
+    margin-bo om: 20px; 
+    color: #00FF7F; /* Light green heading */ 
+} 
+ 
+.contact-container p { 
+    font-size: 1rem; 
+    color: #b3ffcc; /* So green for the paragraph */ 
+    margin-bo om: 20px; 
+} 
+ 
+form label { 
+    display: block; 
+    text-align: le ; 
+    font-weight: bold; 
+    color: #00FF7F; 
+    margin-bo om: 8px; 
+} 
+ 
+form input, form textarea { 
+    width: 100%; 
+    padding: 10px; 
+    margin-bo om: 15px; 
+    border: 1px solid #00FF7F; 
+    background-color: #262626; /* Darker background for inputs */ 
+    color: #b3ffcc; /* So green text */ 
+    border-radius: 5px; 
+    font-size: 1rem; 
+    outline: none; 
+} 
+ 
+form input:focus, form textarea:focus { 
+    border-color: #32CD32; /* Bright green on focus */ 
+} 
+ 
+bu on[type="submit"] { 
+    background-color: #00FF7F; 
+    color: #000; 
+    padding: 12px 20px; 
+    border: none; 
+    border-radius: 5px; 
+    font-size: 1rem; 
+    cursor: pointer; 
+    transi on: background-color 0.3s ease; 
+} 
+bu on[type="submit"]:hover { 
+background-color: #32CD32; /* Brighter green on hover */ 
+}
